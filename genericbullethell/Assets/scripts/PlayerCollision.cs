@@ -16,12 +16,14 @@ public class PlayerCollision : MonoBehaviour
     public int lives;
     public float damageMultiplier;
     [HideInInspector] public bool lostLife = false;
+    [HideInInspector] public bool tookDamage = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
         {
             Destroy(other.gameObject);
             currentHealth -= 1 * damageMultiplier;
+            tookDamage = true;
             if (currentHealth <= 0)
             {
                 LoseLife();

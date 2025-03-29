@@ -23,19 +23,14 @@ public class Enemy : MonoBehaviour
     public float restTime;
     public float timeUntilFirstAttack;
     public bool restDuringAttack;
-    public float cameraYToStart;
+    public float startOffset;
     public Vector2 endPos;
     private RunAttack startAttack;
-    // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating("Funny", timeTilStart, restTime);
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (cameraYToStart <= cameraRef.transform.position.y)
+        if (this.transform.position.y - startOffset <= cameraRef.transform.position.y)
         {
             Move();
             Attack();
@@ -76,11 +71,6 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         StartCoroutine(TimeAttack());
-    }
-
-    private void Funny()
-    {
-        print("hi");
     }
 
     private IEnumerator PauseMove(float rest)

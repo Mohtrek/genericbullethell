@@ -56,6 +56,11 @@ public class Score : MonoBehaviour
                 score += 1 * scoreMultiplier;
                 canAddTimeScore = true;
             }
+            if (damage.tookDamage)
+            {
+                damage.tookDamage = false;
+                score -= damage.damageMultiplier;
+            }
             if (damage.lostLife)
             {
                 damage.lostLife = false;
